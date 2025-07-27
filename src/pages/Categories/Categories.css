@@ -1,0 +1,54 @@
+.categories-page {
+  padding: 40px 0;
+}
+
+/* Навигация */
+.categories-navigation {
+  display: flex;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.categories-nav-btn {
+  background: #fff;
+  border: 1px solid #E0E0E0;
+  border-radius: 8px;
+  padding: 6px 18px;
+  font-size: 15px;
+  color: var(--light-border-color);
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  transition: background 0.2s, color 0.2s;
+  outline: none;
+  text-decoration: none;
+  box-shadow: none;
+  margin-bottom: 0;
+}
+
+.categories-nav-btn.active,
+.categories-nav-btn:disabled {
+  background: #fff;
+  color: #282828;
+  border: 1px solid #E0E0E0;
+  cursor: default;
+}
+
+.categories-nav-btn:not(.active):hover:not(:disabled) {
+  background: #e9e9e9;
+}
+
+.categories-nav-separator {
+  width: 16px;
+  height: 1px;
+  background: #E0E0E0;
+  margin: 0 8px;
+}
+
+/* Заголовок */
+.categories-title {
+  font-size: 64px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 40px;
+} 

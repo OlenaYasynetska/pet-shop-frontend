@@ -1,0 +1,149 @@
+.categories-section {
+  margin-bottom: 0;
+}
+
+/* Для главной страницы добавляем отступ */
+.categories-section:not(.categories-page .categories-section) {
+  margin-bottom: 80px;
+}
+
+.categories-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.categories-header h2 {
+  font-size: 64px;
+  font-weight: 700;
+  color: #282828;
+  margin: 0;
+  margin-bottom: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.categories-header__line {
+  flex: 1 1 auto;
+  width: auto;
+  height: 2px;
+  background: var(--light-border-color);
+  margin-left: 24px;
+  margin-right: 0;
+  margin-bottom: 0;
+}
+
+.categories-all-btn {
+  background: #fff;
+  border: 1px solid var(--light-border-color);
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 14px;
+  color: #282828;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  transition: all 0.2s;
+  cursor: pointer;
+  outline: none;
+  box-shadow: none;
+  margin-bottom: 0;
+}
+
+.categories-all-btn:hover {
+  box-shadow: 0 4px 16px rgba(13,80,255,0.10);
+  transform: translateY(-2px) scale(1.03);
+  color: var(--primary-bg-color);
+  text-decoration: none;
+}
+
+/* Стили для кликабельных карточек категорий */
+.category-card {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.category-card:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+}
+
+/* .product-card img,
+.product-img, */
+/* .category-img {
+  height: 350px;
+} */
+
+.categories-section .product-grid {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.categories-section .product-card img {
+  height: 350px;
+}
+
+.categories-nav-btn {
+  background: #fff;
+  border: 1px solid #E0E0E0;
+  border-radius: 8px;
+  padding: 6px 18px;
+  font-size: 15px;
+  color: var(--light-border-color);
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  transition: background 0.2s, color 0.2s;
+  outline: none;
+  text-decoration: none;
+  box-shadow: none;
+  margin-bottom: 0;
+}
+
+.categories-nav-btn.active,
+.categories-nav-btn:disabled {
+  background: #fff;
+  color: #282828;
+  border: 1px solid #E0E0E0;
+  cursor: default;
+}
+
+.categories-nav-btn:not(.active):hover:not(:disabled) {
+  background: #e9e9e9;
+}
+
+/* Сообщения */
+.error-message {
+  background: #ffebee;
+  color: #c62828;
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  border: 1px solid #ffcdd2;
+}
+
+.loading-message {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+}
+
+.no-categories-message {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  background: #f5f5f5;
+  border-radius: 8px;
+  margin: 24px 0;
+}

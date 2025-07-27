@@ -1,0 +1,413 @@
+.cart-page {
+  padding: 40px 0;
+}
+
+/* Заголовок корзины */
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.cart-title {
+  font-size: 48px;
+  font-weight: 700;
+  color: #282828;
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+}
+
+.back-to-store {
+  color: var(--primary-bg-color);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.back-to-store:hover {
+  text-decoration: underline;
+}
+
+/* Контент корзины */
+.cart-content {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 40px;
+  align-items: start;
+}
+
+/* Список товаров */
+.cart-items {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.cart-item {
+  display: grid;
+  grid-template-columns: 80px 1fr auto auto auto;
+  gap: 20px;
+  align-items: center;
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.cart-item-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.cart-item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cart-item-name {
+  font-size: 16px;
+  font-weight: 500;
+  color: #282828;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.cart-item-price {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.current-price {
+  font-size: 18px;
+  font-weight: 600;
+  color: #282828;
+}
+
+.original-price {
+  font-size: 14px;
+  color: #8B8B8B;
+  text-decoration: line-through;
+}
+
+/* Селектор количества */
+.cart-item-quantity {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.quantity-btn {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #E0E0E0;
+  background: #fff;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  color: #282828;
+  transition: all 0.2s;
+}
+
+.quantity-btn:hover {
+  background: #f5f5f5;
+  border-color: #ccc;
+}
+
+.quantity-value {
+  font-size: 16px;
+  font-weight: 500;
+  color: #282828;
+  min-width: 20px;
+  text-align: center;
+}
+
+.cart-item-total {
+  font-size: 18px;
+  font-weight: 600;
+  color: #282828;
+  text-align: right;
+}
+
+.remove-item-btn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: #f5f5f5;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 18px;
+  color: #666;
+  transition: all 0.2s;
+}
+
+.remove-item-btn:hover {
+  background: #ffebee;
+  color: #d32f2f;
+}
+
+/* Детали заказа */
+.order-details {
+  background: #f8f8f8;
+  border-radius: 12px;
+  padding: 24px;
+  position: sticky;
+  top: 20px;
+}
+
+.order-details-title {
+  font-size: 64px;
+  font-weight: 700;
+  color: #282828;
+  margin: 0 0 20px 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.order-summary {
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #E0E0E0;
+}
+
+.items-count {
+  font-size: 14px;
+  color: #666;
+  margin: 0 0 8px 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.total-price {
+  font-size: 24px;
+  font-weight: 700;
+  color: #282828;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.order-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.order-input {
+  padding: 12px 16px;
+  border: 1px solid #E0E0E0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: 'Montserrat', sans-serif;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.order-input:focus {
+  border-color: var(--primary-bg-color);
+}
+
+.order-btn {
+  padding: 16px 24px;
+  background: var(--primary-bg-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.order-btn:hover {
+  background: #0a40cc;
+}
+
+/* Пустая корзина */
+.empty-cart {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.empty-cart-message {
+  font-size: 18px;
+  color: #666;
+  margin: 0 0 32px 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.continue-shopping-btn {
+  display: inline-block;
+  padding: 16px 32px;
+  background: var(--primary-bg-color);
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+  transition: background 0.2s;
+}
+
+.continue-shopping-btn:hover {
+  background: #0a40cc;
+}
+
+/* Модальное окно успешного заказа */
+.success-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.success-modal {
+  background: var(--primary-bg-color);
+  color: white;
+  padding: 32px;
+  border-radius: 12px;
+  width: 548px;
+  position: relative;
+  text-align: left;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.close-modal-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.close-modal-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.success-title {
+  font-size: 40px;
+  font-weight: 600;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  text-align: left;
+}
+
+.success-message {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 0%;
+  max-width: 424px;
+  text-align: left;
+}
+
+.success-message p {
+  margin: 0 0 12px 0;
+}
+
+.success-message p:last-child {
+  margin-bottom: 0;
+}
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+  .cart-content {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  
+  .order-details {
+    position: static;
+  }
+}
+
+@media (max-width: 768px) {
+  .cart-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  
+  .cart-title {
+    font-size: 36px;
+  }
+  
+  .cart-item {
+    grid-template-columns: 60px 1fr;
+    gap: 16px;
+    padding: 16px;
+  }
+  
+  .cart-item-image {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .cart-item-quantity,
+  .cart-item-total,
+  .remove-item-btn {
+    grid-column: 2;
+    justify-self: start;
+  }
+  
+  .cart-item-quantity {
+    margin-top: 8px;
+  }
+  
+  .cart-item-total {
+    margin-top: 8px;
+  }
+  
+  .remove-item-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cart-page {
+    padding: 20px 0;
+  }
+  
+  .cart-title {
+    font-size: 28px;
+  }
+  
+  .success-modal {
+    padding: 24px;
+    margin: 20px;
+  }
+} 
