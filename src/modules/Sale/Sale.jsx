@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import './Sale.css';
 import '../../shared/styles/productCard.css';
+import '../../shared/styles/saleStyles.css';
 import { NavLink } from 'react-router-dom';
 import { productsApi } from '../../shared/api/productsApi';
 import { getImageUrl, getDefaultImage } from '../../shared/utils/imageUtils';
-
+import { useSaleStyles } from '../../shared/hooks/useSaleStyles';
 
 
 // Функция для получения изображения по умолчанию
@@ -19,6 +20,7 @@ const getDefaultImageWithIndex = (index) => {
 };
 
 const Sale = () => {
+  const saleStyles = useSaleStyles();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -44,9 +46,8 @@ const Sale = () => {
         .map(product => ({
           id: product?.id,
           title: product?.title || product?.name || 'Product',
-          price: product?.discont_price || 0,
-          oldPrice: product?.price || 0,
-          discount: Math.round(((product?.price || 0) - (product?.discont_price || 0)) / (product?.price || 1) * 100),
+          price: product?.price || 0,
+          discont_price: product?.discont_price || 0,
           image: product?.image
         }));
       
@@ -60,33 +61,29 @@ const Sale = () => {
         {
           id: 1,
           title: 'BELCANDO Mini Dog Food',
-          price: 23,
-          oldPrice: 35,
-          discount: 34,
+          price: 35,
+          discont_price: 23,
           image: '/product_img/1.jpeg'
         },
         {
           id: 2,
           title: 'GranataPet Mini Royal Poultry, Dry Food for Dogs',
-          price: 15,
-          oldPrice: 26,
-          discount: 42,
+          price: 26,
+          discont_price: 15,
           image: '/product_img/2.jpeg'
         },
         {
           id: 3,
           title: 'animonda Carny Dry Cat Food for Adult Cats',
-          price: 9,
-          oldPrice: 14,
-          discount: 36,
+          price: 14,
+          discont_price: 9,
           image: '/product_img/3.jpeg'
         },
         {
           id: 4,
           title: 'Royal Canin Veterinary Renal',
-          price: 35,
-          oldPrice: 40,
-          discount: 13,
+          price: 40,
+          discont_price: 35,
           image: '/product_img/8.jpeg'
         }
       ];
@@ -124,26 +121,31 @@ const Sale = () => {
       {/* Сетка товаров */}
       <div className="product-grid">
         {products.map((product, index) => (
-          <div className="product-card" key={product.id || index}>
+          <div className="product-card" key={product.id || index} style={saleStyles.productCard}>
             <img 
               className="product-img" 
               src={getImageUrl(product.image) || getDefaultImageWithIndex(index)} 
               alt={product?.title || product?.name || 'Product'} 
-                                onError={(e) => {
-                    e.target.src = getImageUrl(getDefaultImageWithIndex(index));
-                  }}
+              onError={(e) => {
+                e.target.src = getImageUrl(getDefaultImageWithIndex(index));
+              }}
             />
-            {product.discount && (
-              <div className="discount-badge">-{product.discount}%</div>
+            {product.discont_price && product.discont_price < product.price && (
+              <div className="discount-badge" style={saleStyles.discountBadge}>
+                -{Math.round(((product.price - product.discont_price) / product.price) * 100)}%
+              </div>
             )}
-            <div className="product-title">{product?.title || product?.name || 'Product'}</div>
-            <div className="sale-prices">
-              <span className="sale-price">${product.price}</span>
-              {product.oldPrice && (
-                <span className="sale-old-price">${product.oldPrice}</span>
+            <div className="product-title" style={saleStyles.productTitle}>
+              {product?.title || product?.name || 'Product'}
+            </div>
+            <div className="sale-prices" style={saleStyles.pricesContainer}>
+              <span className="sale-price" style={saleStyles.currentPrice}>${product.discont_price}</span>
+              {product.discont_price && product.discont_price < product.price && (
+                <span className="sale-old-price" style={saleStyles.oldPrice}>
+                  ${product.price}
+                </span>
               )}
             </div>
-
           </div>
         ))}
       </div>

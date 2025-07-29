@@ -88,6 +88,10 @@
   height: 350px;
 }
 
+.categories-section .product-card .product-title {
+  margin-bottom: 20px;
+}
+
 .categories-nav-btn {
   background: #fff;
   border: 1px solid #E0E0E0;

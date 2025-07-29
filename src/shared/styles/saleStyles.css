@@ -1,0 +1,62 @@
+/* Стили для товаров со скидками */
+
+/* Стили для названия продукта */
+.sale-product-title {
+  margin: 20px 32px 0 32px;
+  text-align: left;
+  font-size: 20px;
+  font-weight: 500;
+  color: #282828;
+  width: auto;
+  max-width: none;
+  line-height: 1.2;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Стили для контейнера цен */
+.sale-prices-container {
+  margin: 16px 32px 32px 32px;
+  justify-content: flex-start;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Стили для текущей цены (со скидкой) */
+.sale-current-price {
+  font-size: 40px;
+  color: #282828;
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Стили для старой цены (до скидки) */
+.sale-old-price {
+  font-size: 20px;
+  color: var(--primary-text-color);
+  text-decoration: line-through;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Стили для карточки товара со скидкой */
+.sale-product-card {
+  align-items: flex-start;
+  position: relative;
+}
+
+/* Стили для бейджа скидки */
+.sale-discount-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #0D50FF;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 8px;
+  padding: 4px 12px;
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(13,80,255,0.10);
+  font-family: 'Montserrat', sans-serif;
+}

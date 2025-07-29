@@ -5,6 +5,8 @@ import { productsApi } from '../../shared/api/productsApi';
 import PaginationButton from '../../shared/components/PaginationButton';
 import { useCart } from '../../shared/context/CartContext';
 import { getImageUrl, getDefaultImage } from '../../shared/utils/imageUtils';
+import { useSaleStyles } from '../../shared/hooks/useSaleStyles';
+import '../../shared/styles/saleStyles.css';
 import './AllSales.css';
 
 // Функция для получения изображения по умолчанию
@@ -25,6 +27,7 @@ const getDefaultImageWithIndex = (index) => {
 const AllSales = () => {
   const navigate = useNavigate();
   const { addToCart } = useCart();
+  const saleStyles = useSaleStyles();
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -206,7 +209,7 @@ const AllSales = () => {
         {/* Сетка товаров */}
         <div className="products-grid">
           {paginatedProducts.map((product, index) => (
-            <div className="product-card" key={product.id || index}>
+            <div className="product-card" key={product.id || index} style={saleStyles.productCard}>
               <div className="product-image-wrapper">
                 <img
                   className="product-img"
@@ -217,7 +220,7 @@ const AllSales = () => {
                   }}
                 />
                 {product?.discont_price && product.discont_price < (product?.price || 0) && (
-                  <div className="discount-badge">
+                  <div className="discount-badge" style={saleStyles.discountBadge}>
                     -{Math.round(((product.price - product.discont_price) / product.price) * 100)}%
                   </div>
                 )}
@@ -229,11 +232,17 @@ const AllSales = () => {
                 </button>
               </div>
               <NavLink to={`/product/${product.id}`} className="product-link">
-                <div className="product-title">{product?.title || product?.name || 'Product'}</div>
-                <div className="product-prices">
-                  <span className="current-price">${product?.discont_price || product?.price || 0}</span>
+                <div className="product-title" style={saleStyles.productTitle}>
+                  {product?.title || product?.name || 'Product'}
+                </div>
+                <div className="product-prices" style={saleStyles.pricesContainer}>
+                  <span className="current-price" style={saleStyles.currentPrice}>
+                    ${product?.discont_price || product?.price || 0}
+                  </span>
                   {product?.discont_price && product.discont_price < (product?.price || 0) && (
-                    <span className="old-price">${product?.price || 0}</span>
+                    <span className="old-price" style={saleStyles.oldPrice}>
+                      ${product?.price || 0}
+                    </span>
                   )}
                 </div>
               </NavLink>

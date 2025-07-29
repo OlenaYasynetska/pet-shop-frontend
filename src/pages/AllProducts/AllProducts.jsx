@@ -111,17 +111,15 @@ const AllProducts = () => {
         {
           id: 1,
           title: 'BELCANDO Mini Dog F...',
-          price: 23,
-          oldPrice: 35,
-          discount: 17,
+          price: 35,
+          discont_price: 23,
           image: wetFootImg
         },
         {
           id: 2,
           title: 'GranataPet Mini Royal...',
-          price: 15,
-          oldPrice: 26,
-          discount: 26,
+          price: 26,
+          discont_price: 15,
           image: catImg
         },
         // ... добавьте больше заглушек при необходимости
@@ -169,7 +167,7 @@ const AllProducts = () => {
         {/* Навигация */}
         <div className="products-nav">
           <NavLink to="/" className="products-nav-btn">Main page</NavLink>
-          <div style={{ width: '16px', height: '1px', background: '#E0E0E0', margin: '0 8px' }}></div>
+          <div className="nav-separator"></div>
           <button className="products-nav-btn active" disabled>All products</button>
         </div>
 
@@ -240,38 +238,54 @@ const AllProducts = () => {
 
         {/* Сетка товаров */}
         <div className="products-grid">
-          {paginatedProducts.map((product, index) => (
-            <div className="product-card" key={product.id || index}>
-              <div className="product-image-wrapper">
-                <img 
-                  className="product-img" 
-                  src={getImageUrl(product.image) || getDefaultImageWithIndex(index)} 
-                  alt={product?.title || product?.name || 'Product'} 
-                  onError={(e) => {
-                    e.target.src = getImageUrl(getDefaultImageWithIndex(index));
-                  }}
-                />
-                {product?.discont_price && product.discont_price < (product?.price || 0) && (
-                  <div className="discount-badge">-{Math.round(((product.price - product.discont_price) / product.price) * 100)}%</div>
-                )}
-                <button 
-                  className="add-to-cart-btn" 
-                  onClick={() => handleAddToCart(product)}
-                >
-                  Add to cart
-                </button>
-              </div>
-              <NavLink to={`/product/${product.id}`} className="product-link">
-                <div className="product-title">{product?.title || product?.name || 'Product'}</div>
-                <div className="product-prices">
-                  <span className="current-price">${product?.discont_price || product?.price || 0}</span>
-                  {product?.discont_price && product.discont_price < (product?.price || 0) && (
-                    <span className="old-price">${product?.price || 0}</span>
+          {paginatedProducts.map((product, index) => {
+            // Проверяем, есть ли у товара скидка
+            const hasDiscount = product?.discont_price && product.discont_price < (product?.price || 0);
+            
+            return (
+              <div 
+                className={`product-card ${hasDiscount ? 'discounted' : ''}`}
+                key={product.id || index}
+              >
+                <div className="product-image-wrapper">
+                  <img 
+                    className="product-img" 
+                    src={getImageUrl(product.image) || getDefaultImageWithIndex(index)} 
+                    alt={product?.title || product?.name || 'Product'} 
+                    onError={(e) => {
+                      e.target.src = getImageUrl(getDefaultImageWithIndex(index));
+                    }}
+                  />
+                  {hasDiscount && (
+                    <div className="discount-badge">
+                      -{Math.round(((product.price - product.discont_price) / product.price) * 100)}%
+                    </div>
                   )}
+                  <button 
+                    className="add-to-cart-btn" 
+                    onClick={() => handleAddToCart(product)}
+                  >
+                    Add to cart
+                  </button>
                 </div>
-              </NavLink>
-            </div>
-          ))}
+                <NavLink to={`/product/${product.id}`} className="product-link">
+                  <div className="product-title">
+                    {product?.title || product?.name || 'Product'}
+                  </div>
+                  <div className="product-prices">
+                    <span className="current-price">
+                      ${product?.discont_price || product?.price || 0}
+                    </span>
+                    {hasDiscount && (
+                      <span className="old-price">
+                        ${product?.price || 0}
+                      </span>
+                    )}
+                  </div>
+                </NavLink>
+              </div>
+            );
+          })}
           {/* Заполнители для выравнивания сетки */}
           {Array.from({ length: PRODUCTS_PER_PAGE - paginatedProducts.length }).map((_, idx) => (
             <div className="product-card" key={`empty-${idx}`} style={{ visibility: 'hidden' }} />

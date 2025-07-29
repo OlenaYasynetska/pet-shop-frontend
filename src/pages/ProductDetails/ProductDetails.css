@@ -6,30 +6,43 @@
 .product-nav {
   display: flex;
   align-items: center;
-  gap: 8px;
   margin-bottom: 32px;
   font-family: 'Montserrat', sans-serif;
 }
 
 .product-nav-btn {
-  color: #666;
+  background: #fff;
+  border: 1px solid #E0E0E0;
+  border-radius: 8px;
+  padding: 6px 18px;
+  font-size: 15px;
+  color: var(--light-border-color);
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  transition: background 0.2s, color 0.2s;
+  outline: none;
   text-decoration: none;
-  font-size: 14px;
-  transition: color 0.2s;
+  box-shadow: none;
+  margin-bottom: 0;
 }
 
 .product-nav-btn:hover {
-  color: var(--primary-bg-color);
+  background: #e9e9e9;
 }
 
 .product-nav-btn.active {
-  color: #333;
-  font-weight: 600;
+  background: #fff;
+  color: #282828;
+  border: 1px solid #E0E0E0;
+  cursor: default;
 }
 
 .nav-separator {
-  color: #666;
-  font-size: 14px;
+  width: 16px;
+  height: 1px;
+  background: #E0E0E0;
+  margin: 0 8px;
 }
 
 /* Основной контент */
@@ -41,47 +54,53 @@
 }
 
 /* Левая колонка - изображения */
-.product-images {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+.product-details-page .product-images {
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 20px !important;
+  align-items: flex-start !important;
 }
 
-.main-image {
-  width: 100%;
-  height: 400px;
+.product-details-page .main-image {
+  flex: 1 !important;
+  height: 572px !important;
   border-radius: 12px;
   overflow: hidden;
   background: #f5f5f5;
+  min-width: 0 !important;
 }
 
-.main-image img {
+.product-details-page .main-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.thumbnail-images {
-  display: flex;
-  flex-direction: row;
-  gap: 12px;
+.product-details-page .thumbnail-images {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+  flex-shrink: 0 !important;
+  width: 80px !important;
 }
 
-.thumbnail {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
+.product-details-page .thumbnail {
+  width: 80px !important;
+  height: 80px !important;
+  border-radius: 8px !important;
   overflow: hidden;
   cursor: pointer;
   border: 2px solid transparent;
   transition: border-color 0.2s;
+  flex-shrink: 0 !important;
 }
 
-.thumbnail.active {
-  border-color: var(--primary-bg-color);
+.product-details-page .thumbnail.active {
+  border-color: var(--primary-bg-color) !important;
+  border-width: 2px !important;
 }
 
-.thumbnail img {
+.product-details-page .thumbnail img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -121,9 +140,13 @@
   color: #999;
   text-decoration: line-through;
   font-family: 'Montserrat', sans-serif;
+  position: relative;
 }
 
 .discount-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
   background: var(--primary-bg-color);
   color: white;
   padding: 4px 8px;
@@ -147,8 +170,8 @@
 }
 
 .quantity-btn {
-  width: 40px;
-  height: 40px;
+  width: 58px;
+  height: 58px;
   border: 1px solid #e0e0e0;
   background: white;
   border-radius: 8px;
@@ -190,7 +213,12 @@
   cursor: pointer;
   transition: background 0.2s;
   font-family: 'Montserrat', sans-serif;
-  margin-top: 8px;
+  margin-left: 16px;
+  max-width: 316px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .add-to-cart-btn:hover {
@@ -227,10 +255,12 @@
   cursor: pointer;
   padding: 0;
   font-family: 'Montserrat', sans-serif;
+  text-decoration: underline;
+  transition: color 0.2s;
 }
 
 .read-more-btn:hover {
-  text-decoration: underline;
+  color: #0a40cc;
 }
 
 /* Сообщения */
@@ -249,25 +279,33 @@
 
 /* Адаптивность */
 @media (max-width: 768px) {
-  .product-content {
+  .product-details-page .product-content {
     grid-template-columns: 1fr;
     gap: 32px;
   }
   
-  .product-title {
+  .product-details-page .product-images {
+    flex-direction: column !important;
+  }
+  
+  .product-details-page .thumbnail-images {
+    flex-direction: row !important;
+  }
+  
+  .product-details-page .product-title {
     font-size: 24px;
   }
   
-  .current-price {
+  .product-details-page .current-price {
     font-size: 24px;
   }
   
-  .main-image {
-    height: 300px;
+  .product-details-page .main-image {
+    height: 300px !important;
   }
   
-  .thumbnail {
-    width: 60px;
-    height: 60px;
+  .product-details-page .thumbnail {
+    width: 60px !important;
+    height: 60px !important;
   }
 } 

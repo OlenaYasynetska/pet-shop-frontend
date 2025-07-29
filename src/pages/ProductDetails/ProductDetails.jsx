@@ -14,6 +14,7 @@ const ProductDetails = () => {
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
+  const [showFullDescription, setShowFullDescription] = useState(false);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -59,7 +60,7 @@ const ProductDetails = () => {
               `/product_img/${productId}_4.jpeg`,
               `/product_img/${productId}_5.jpeg`
             ],
-            description: `Versatile selection: discover the culinary world for your little four-legged friend with 2 types of dry food and 6 types of wet food. So there is something for every taste. High acceptance: our balanced formula is rich in essential nutrients, vitamins and minerals and is tailored to the needs of small dog breeds. An all-round supply that leaves nothing to be desired. Dry food: Finest GF Lamb - easily digestible and a croquette coated with instant sauce for extra taste. Finest Croc - rich in meat and with grape seed flour. Wet food: you will receive a selection of different types of wet food from our range: single protein chicken, single protein buffalo, duck with rice and cr...`
+            description: `Versatile selection: discover the culinary world for your little four-legged friend with 2 types of dry food and 6 types of wet food. So there is something for every taste. High acceptance: our balanced formula is rich in essential nutrients, vitamins and minerals and is tailored to the needs of small dog breeds. An all-round supply that leaves nothing to be desired. Dry food: Finest GF Lamb - easily digestible and a croquette coated with instant sauce for extra taste. Finest Croc - rich in meat and with grape seed flour. Wet food: you will receive a selection of different types of wet food from our range: single protein chicken, single protein buffalo, duck with rice and cr... Made in Germany under strict quality standards, without artificial additives and using food-safe animal products.`
           };
           setProduct(fallbackData);
         }
@@ -92,7 +93,7 @@ const ProductDetails = () => {
             `/product_img/${productId}_4.jpeg`,
             `/product_img/${productId}_5.jpeg`
           ],
-          description: `Versatile selection: discover the culinary world for your little four-legged friend with 2 types of dry food and 6 types of wet food. So there is something for every taste. High acceptance: our balanced formula is rich in essential nutrients, vitamins and minerals and is tailored to the needs of small dog breeds. An all-round supply that leaves nothing to be desired. Dry food: Finest GF Lamb - easily digestible and a croquette coated with instant sauce for extra taste. Finest Croc - rich in meat and with grape seed flour. Wet food: you will receive a selection of different types of wet food from our range: single protein chicken, single protein buffalo, duck with rice and cr...`
+          description: `Versatile selection: discover the culinary world for your little four-legged friend with 2 types of dry food and 6 types of wet food. So there is something for every taste. High acceptance: our balanced formula is rich in essential nutrients, vitamins and minerals and is tailored to the needs of small dog breeds. An all-round supply that leaves nothing to be desired. Dry food: Finest GF Lamb - easily digestible and a croquette coated with instant sauce for extra taste. Finest Croc - rich in meat and with grape seed flour. Wet food: you will receive a selection of different types of wet food from our range: single protein chicken, single protein buffalo, duck with rice and cr... Made in Germany under strict quality standards, without artificial additives and using food-safe animal products.`
         };
         setProduct(fallbackData);
       } finally {
@@ -119,6 +120,17 @@ const ProductDetails = () => {
       // Переходим в корзину
       navigate('/cart');
     }
+  };
+
+  const handleReadMore = () => {
+    setShowFullDescription(!showFullDescription);
+  };
+
+  // Функция для обрезки текста
+  const truncateText = (text, maxLength = 150) => {
+    if (!text) return '';
+    if (text.length <= maxLength) return text;
+    return text.substring(0, maxLength) + '...';
   };
 
   if (loading) {
@@ -149,26 +161,17 @@ const ProductDetails = () => {
         {/* Навигация */}
         <div className="product-nav">
           <NavLink to="/" className="product-nav-btn">Main page</NavLink>
-          <span className="nav-separator">&gt;</span>
+          <div className="nav-separator"></div>
           <NavLink to="/categories" className="product-nav-btn">Categories</NavLink>
-          <span className="nav-separator">&gt;</span>
+          <div className="nav-separator"></div>
           <NavLink to="/categories/1" className="product-nav-btn">Dry & Wet Food</NavLink>
-          <span className="nav-separator">&gt;</span>
+          <div className="nav-separator"></div>
           <span className="product-nav-btn active">{product.title || product.name || 'Product'}</span>
         </div>
 
         <div className="product-content">
           {/* Левая колонка - изображения */}
           <div className="product-images">
-            <div className="main-image">
-              <img
-                src={getImageUrl(product.image || (product.images && product.images[selectedImage])) || getDefaultImage()}
-                alt={product.title || product.name || 'Product'}
-                onError={(e) => {
-                  e.target.src = getDefaultImage();
-                }}
-              />
-            </div>
             <div className="thumbnail-images">
               {product.images && Array.isArray(product.images) && product.images.map((image, index) => (
                 <div
@@ -185,6 +188,54 @@ const ProductDetails = () => {
                   />
                 </div>
               ))}
+              {/* Fallback миниатюры если images не определены */}
+              {(!product.images || !Array.isArray(product.images) || product.images.length === 0) && (
+                <>
+                  <div className={`thumbnail ${selectedImage === 0 ? 'active' : ''}`} onClick={() => setSelectedImage(0)}>
+                    <img
+                      src={getImageUrl(product.image) || getDefaultImage()}
+                      alt={`${product.title || product.name || 'Product'} 1`}
+                      onError={(e) => { e.target.src = getDefaultImage(); }}
+                    />
+                  </div>
+                  <div className={`thumbnail ${selectedImage === 1 ? 'active' : ''}`} onClick={() => setSelectedImage(1)}>
+                    <img
+                      src={getImageUrl(`/product_img/${product.id}_2.jpeg`) || getDefaultImage()}
+                      alt={`${product.title || product.name || 'Product'} 2`}
+                      onError={(e) => { e.target.src = getDefaultImage(); }}
+                    />
+                  </div>
+                  <div className={`thumbnail ${selectedImage === 2 ? 'active' : ''}`} onClick={() => setSelectedImage(2)}>
+                    <img
+                      src={getImageUrl(`/product_img/${product.id}_3.jpeg`) || getDefaultImage()}
+                      alt={`${product.title || product.name || 'Product'} 3`}
+                      onError={(e) => { e.target.src = getDefaultImage(); }}
+                    />
+                  </div>
+                  <div className={`thumbnail ${selectedImage === 3 ? 'active' : ''}`} onClick={() => setSelectedImage(3)}>
+                    <img
+                      src={getImageUrl(`/product_img/${product.id}_4.jpeg`) || getDefaultImage()}
+                      alt={`${product.title || product.name || 'Product'} 4`}
+                      onError={(e) => { e.target.src = getDefaultImage(); }}
+                    />
+                  </div>
+                </>
+              )}
+            </div>
+            <div className="main-image">
+              <img
+                src={getImageUrl(
+                  product.images && Array.isArray(product.images) && product.images[selectedImage] 
+                    ? product.images[selectedImage] 
+                    : selectedImage === 0 
+                      ? product.image 
+                      : `/product_img/${product.id}_${selectedImage + 1}.jpeg`
+                ) || getDefaultImage()}
+                alt={product.title || product.name || 'Product'}
+                onError={(e) => {
+                  e.target.src = getDefaultImage();
+                }}
+              />
             </div>
           </div>
 
@@ -195,10 +246,12 @@ const ProductDetails = () => {
             <div className="product-pricing">
               <span className="current-price">${product.discont_price || product.price || 0}</span>
               {product.discont_price && product.price > product.discont_price && (
-                <span className="old-price">${product.price}</span>
-              )}
-              {discount > 0 && (
-                <div className="discount-badge">-{discount}%</div>
+                <span className="old-price">
+                  ${product.price}
+                  {discount > 0 && (
+                    <div className="discount-badge">-{discount}%</div>
+                  )}
+                </span>
               )}
             </div>
 
@@ -217,16 +270,24 @@ const ProductDetails = () => {
               >
                 +
               </button>
+              <button className="add-to-cart-btn" onClick={handleAddToCart}>
+                Add to cart
+              </button>
             </div>
-
-            <button className="add-to-cart-btn" onClick={handleAddToCart}>
-              Add to cart
-            </button>
 
             <div className="product-description">
               <h3>Description</h3>
-              <p>{product.description || 'No description available'}</p>
-              <button className="read-more-btn">Read more</button>
+              <p>
+                {showFullDescription 
+                  ? (product.description || 'No description available')
+                  : truncateText(product.description || 'No description available', 150)
+                }
+              </p>
+              {(product.description && product.description.length > 150) && (
+                <button className="read-more-btn" onClick={handleReadMore}>
+                  {showFullDescription ? 'Read less' : 'Read more'}
+                </button>
+              )}
             </div>
           </div>
         </div>

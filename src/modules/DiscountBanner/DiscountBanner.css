@@ -110,4 +110,71 @@
 }
 .notfound-contact-value a:hover img {
   filter: brightness(0) saturate(100%) invert(24%) sepia(99%) saturate(7476%) hue-rotate(220deg) brightness(99%) contrast(101%);
+}
+
+/* Модальное окно */
+.discount-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.discount-modal {
+  background: rgba(13, 80, 255, 1);
+  border-radius: 16px;
+  padding: 32px;
+  max-width: 548px;
+  width: 90%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s;
+}
+
+.modal-close-btn:hover {
+  opacity: 0.7;
+}
+
+.modal-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.modal-message {
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
 } 

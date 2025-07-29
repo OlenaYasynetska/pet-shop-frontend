@@ -50,51 +50,58 @@
   font-size: 64px;
   font-weight: 700;
   color: #282828;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
+  font-family: 'Montserrat', sans-serif;
 }
 
 /* Фильтры */
 .sales-filters {
   display: flex;
-  align-items: center;
+  gap: 32px;
   margin-bottom: 32px;
-  gap: 40px;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
-.price-filters {
+.filter-group {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
 }
 
-.price-filters label {
-  font-size: 14px;
-  color: #666;
+.filter-group label {
+  font-size: 16px;
+  color: #282828;
   font-weight: 500;
   font-family: 'Montserrat', sans-serif;
-  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.price-filters input {
-  padding: 8px 10px;
-  border: 1px solid #e0e0e0;
-  border-radius: 4px;
-  font-size: 14px;
+.price-inputs {
+  display: flex;
+  gap: 8px;
+}
+
+.price-input {
   width: 80px;
+  padding: 8px 12px;
+  border: 1px solid #E0E0E0;
+  border-radius: 8px;
+  font-size: 14px;
   font-family: 'Montserrat', sans-serif;
-  background: white;
-  color: #333;
-}
-
-.price-filters input::placeholder {
-  color: #999;
-  font-size: 13px;
-}
-
-.price-filters input:focus {
   outline: none;
-  border-color: #339933;
-  box-shadow: 0 0 0 2px rgba(51, 153, 51, 0.1);
+}
+
+.price-input:focus {
+  border-color: var(--primary-bg-color);
+}
+
+.discount-checkbox {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--primary-bg-color);
 }
 
 .sort-filter {
@@ -173,8 +180,6 @@
   gap: 16px;
   margin-top: 40px;
 }
-
-
 
 .pagination-info {
   font-size: 14px;
@@ -328,49 +333,13 @@
   
   .sales-filters {
     flex-direction: column;
-    gap: 20px;
-    align-items: stretch;
-  }
-  
-  .price-filters {
-    flex-direction: column;
-    gap: 8px;
-    align-items: stretch;
-  }
-  
-  .sort-filter {
-    flex-direction: column;
-    gap: 8px;
-    align-items: stretch;
+    align-items: flex-start;
+    gap: 16px;
   }
 }
 
 @media (max-width: 600px) {
   .products-grid {
     grid-template-columns: 1fr;
-  }
-  
-  .sales-title {
-    font-size: 36px;
-  }
-  
-  .price-filters {
-    flex-direction: column;
-    gap: 8px;
-    align-items: stretch;
-  }
-  
-  .price-filters input {
-    width: 100%;
-  }
-  
-  .sort-filter {
-    flex-direction: column;
-    gap: 8px;
-    align-items: stretch;
-  }
-  
-  .sort-filter select {
-    width: 100%;
   }
 } 

@@ -26,6 +26,10 @@
   margin-bottom: 0;
 }
 
+.products-nav-btn:hover {
+  background: #e9e9e9;
+}
+
 .products-nav-btn.active,
 .products-nav-btn:disabled {
   background: #fff;
@@ -34,8 +38,11 @@
   cursor: default;
 }
 
-.products-nav-btn:not(.active):hover:not(:disabled) {
-  background: #e9e9e9;
+.nav-separator {
+  width: 16px;
+  height: 1px;
+  background: #E0E0E0;
+  margin: 0 8px;
 }
 
 /* Заголовок */
@@ -149,8 +156,6 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
 }
-
-
 
 /* Стили для карточек товаров */
 .all-products-page .product-card {
@@ -282,6 +287,61 @@
 .all-products-page .product-link:hover {
   text-decoration: none;
   color: inherit;
+}
+
+/* Специальные стили для товаров со скидками на странице All Products */
+.all-products-page .product-card.discounted {
+  align-items: flex-start;
+}
+
+.all-products-page .product-card.discounted .product-title {
+  margin: 20px 32px 0 32px;
+  text-align: left;
+  font-size: 20px;
+  font-weight: 500;
+  color: #282828;
+  width: auto;
+  max-width: none;
+  line-height: 1.2;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.all-products-page .product-card.discounted .product-prices {
+  margin: 16px 32px 32px 32px;
+  justify-content: flex-start;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.all-products-page .product-card.discounted .current-price {
+  font-size: 40px;
+  color: #282828;
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.all-products-page .product-card.discounted .old-price {
+  font-size: 20px;
+  color: var(--primary-text-color);
+  text-decoration: line-through;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.all-products-page .product-card.discounted .discount-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #0D50FF;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 8px;
+  padding: 4px 12px;
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(13,80,255,0.10);
+  font-family: 'Montserrat', sans-serif;
 }
 
 /* Адаптивность */

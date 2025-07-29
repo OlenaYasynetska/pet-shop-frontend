@@ -5,12 +5,15 @@ import { getProductsByCategory, getCategories } from '../../shared/api/productsA
 import { getImageUrl, getDefaultImage } from '../../shared/utils/imageUtils';
 import PaginationButton from '../../shared/components/PaginationButton/PaginationButton';
 import { useCart } from '../../shared/context/CartContext';
+import { useSaleStyles } from '../../shared/hooks/useSaleStyles';
+import '../../shared/styles/saleStyles.css';
 import './CategoryProducts.css';
 
 const CategoryProducts = () => {
   const { categoryId } = useParams();
   const navigate = useNavigate();
   const { addToCart } = useCart();
+  const saleStyles = useSaleStyles();
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -232,9 +235,9 @@ const CategoryProducts = () => {
         {/* Навигация */}
         <div className="category-nav">
           <NavLink to="/" className="category-nav-btn">Main page</NavLink>
-          <span className="nav-separator">&gt;</span>
+          <div className="nav-separator"></div>
           <NavLink to="/categories" className="category-nav-btn">Categories</NavLink>
-          <span className="nav-separator">&gt;</span>
+          <div className="nav-separator"></div>
           <span className="category-nav-btn active">{category?.title || category?.name || 'Category'}</span>
         </div>
 
@@ -288,7 +291,7 @@ const CategoryProducts = () => {
         {/* Сетка товаров */}
         <div className="products-grid">
           {currentProducts.map((product, index) => (
-            <div key={product?.id || index} className="product-card">
+            <div key={product?.id || index} className="product-card" style={saleStyles.productCard}>
               <div className="product-image-wrapper">
                 <img
                   src={getImageUrl(product?.image) || getDefaultImage()}
@@ -296,7 +299,7 @@ const CategoryProducts = () => {
                   onError={(e) => { e.target.src = getDefaultImage(); }}
                 />
                 {product?.discont_price && product.discont_price < (product?.price || 0) && (
-                  <div className="discount-badge">
+                  <div className="discount-badge" style={saleStyles.discountBadge}>
                     -{Math.round(((product.price - product.discont_price) / product.price) * 100)}%
                   </div>
                 )}
@@ -308,11 +311,17 @@ const CategoryProducts = () => {
                 </button>
               </div>
               <NavLink to={`/product/${product?.id || 1}`} className="product-link">
-                <h3 className="product-title">{product?.title || product?.name || 'Product'}</h3>
-                <div className="product-prices">
-                  <span className="current-price">${product?.discont_price || product?.price || 0}</span>
+                <h3 className="product-title" style={saleStyles.productTitle}>
+                  {product?.title || product?.name || 'Product'}
+                </h3>
+                <div className="product-prices" style={saleStyles.pricesContainer}>
+                  <span className="current-price" style={saleStyles.currentPrice}>
+                    ${product?.discont_price || product?.price || 0}
+                  </span>
                   {product?.discont_price && product.discont_price < (product?.price || 0) && (
-                    <span className="old-price">${product?.price || 0}</span>
+                    <span className="old-price" style={saleStyles.oldPrice}>
+                      ${product?.price || 0}
+                    </span>
                   )}
                 </div>
               </NavLink>
