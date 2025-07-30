@@ -1,7 +1,26 @@
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 24px;
+}
+
+/* Адаптивность для сетки продуктов */
+@media (max-width: 1200px) {
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .product-card {
@@ -60,7 +79,7 @@
 .discount-badge {
   position: absolute;
   /* top: 12px; */
-  right: -62px;
+  right: -72px;
   background: var(--primary-bg-color);
   color: white;
   padding: 4px 8px;
@@ -74,4 +93,108 @@
   justify-content: center;
   font-family: 'Montserrat', sans-serif;
   z-index: 2;
+}
+
+/* Адаптивность для карточек продуктов */
+@media (max-width: 1200px) {
+  .product-title {
+    font-size: 16px;
+  }
+  
+  .current-price {
+    font-size: 48px;
+  }
+  
+  .old-price {
+    font-size: 32px;
+  }
+  
+  .discount-badge {
+    font-size: 18px;
+    right: -60px;
+  }
+}
+
+@media (max-width: 900px) {
+  .product-title {
+    font-size: 14px;
+  }
+  
+  .current-price {
+    font-size: 36px;
+  }
+  
+  .old-price {
+    font-size: 24px;
+  }
+  
+  .discount-badge {
+    font-size: 16px;
+    right: -50px;
+  }
+}
+
+@media (max-width: 600px) {
+  .product-title {
+    font-size: 16px;
+  }
+  
+  .current-price {
+    font-size: 32px;
+  }
+  
+  .old-price {
+    font-size: 20px;
+  }
+  
+  .discount-badge {
+    font-size: 14px;
+    right: -40px;
+  }
+}
+
+/* Адаптивность для заголовков страниц */
+@media (max-width: 1200px) {
+  .products-title,
+  .sales-title,
+  .category-title {
+    font-size: 48px;
+  }
+}
+
+@media (max-width: 900px) {
+  .products-title,
+  .sales-title,
+  .category-title {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 600px) {
+  .products-title,
+  .sales-title,
+  .category-title {
+    font-size: 28px;
+  }
+  
+  .categories-all-btn,
+  .sale-all-btn,
+  .products-all-btn {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+  
+  .products-filters,
+  .sales-filters,
+  .category-filters {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  
+  .filter-group {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
 } 

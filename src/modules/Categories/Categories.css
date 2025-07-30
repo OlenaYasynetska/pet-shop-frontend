@@ -84,6 +84,25 @@
   grid-template-columns: repeat(4, 1fr);
 }
 
+/* Адаптивность для сетки категорий */
+@media (max-width: 1200px) {
+  .categories-section .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .categories-section .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .categories-section .product-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .categories-section .product-card img {
   height: 350px;
 }

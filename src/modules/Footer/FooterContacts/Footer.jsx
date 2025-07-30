@@ -1,7 +1,7 @@
 import React from 'react';
-import FooterMap from './FooterMap/FooterMap';
-import Container from '../../shared/components/Container/Container';
-import '../../pages/PageNotFound/PageNotFound.css';
+import FooterMap from '../FooterMap';
+import Container from '../../../shared/components/Container/Container';
+import '../../../pages/PageNotFound/PageNotFound.css';
 
 const Footer = () => {
     return (

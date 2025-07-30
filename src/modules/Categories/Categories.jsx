@@ -4,25 +4,10 @@ import '../../shared/styles/productCard.css';
 import { NavLink } from 'react-router-dom';
 import { productsApi } from '../../shared/api/productsApi';
 import { getImageUrl, getDefaultImage } from '../../shared/utils/imageUtils';
-
-
-
-// Функция для получения изображения по умолчанию
-const getDefaultImageWithIndex = (index) => {
-  const images = [
-    '/product_img/1.jpeg',
-    '/product_img/2.jpeg',
-    '/product_img/3.jpeg',
-    '/product_img/4.jpeg',
-    '/product_img/5.jpeg',
-    '/product_img/6.jpeg',
-    '/product_img/7.jpeg',
-    '/product_img/8.jpeg'
-  ];
-  return images[index % images.length];
-};
+import { useImageUtils } from '../../shared/hooks';
 
 const Categories = ({ showAll = false }) => {
+  const { getDefaultImageWithIndex, handleImageError } = useImageUtils();
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -107,9 +92,7 @@ const Categories = ({ showAll = false }) => {
                 className="product-img" 
                 src={getImageUrl(category.image) || getDefaultImageWithIndex(index)} 
                 alt={category.title} 
-                onError={(e) => {
-                  e.target.src = getImageUrl(getDefaultImageWithIndex(index));
-                }}
+                onError={(e) => handleImageError(e, index)}
               />
             <div className="product-title">{category.title}</div>
           </NavLink>

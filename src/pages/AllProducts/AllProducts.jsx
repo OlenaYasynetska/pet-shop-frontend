@@ -1,33 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import Container from '../../shared/components/Container/Container';
+import Container from '../../shared/components/Container';
 import { NavLink, useNavigate } from 'react-router-dom';
 import PaginationButton from '../../shared/components/PaginationButton';
 import { useCart } from '../../shared/context/CartContext';
 import { getImageUrl, getDefaultImage } from '../../shared/utils/imageUtils';
+import { useImageUtils } from '../../shared/hooks';
 import './AllProducts.css';
 import '../../shared/styles/productCard.css';
 import { productsApi } from '../../shared/api/productsApi';
 
 
-
-// Функция для получения изображения по умолчанию
-const getDefaultImageWithIndex = (index) => {
-  const images = [
-    '/product_img/1.jpeg',
-    '/product_img/2.jpeg',
-    '/product_img/3.jpeg',
-    '/product_img/4.jpeg',
-    '/product_img/5.jpeg',
-    '/product_img/6.jpeg',
-    '/product_img/7.jpeg',
-    '/product_img/8.jpeg'
-  ];
-  return images[index % images.length];
-};
-
 const AllProducts = () => {
   const navigate = useNavigate();
   const { addToCart } = useCart();
+  const { getDefaultImageWithIndex, handleImageError } = useImageUtils();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -252,9 +238,7 @@ const AllProducts = () => {
                     className="product-img" 
                     src={getImageUrl(product.image) || getDefaultImageWithIndex(index)} 
                     alt={product?.title || product?.name || 'Product'} 
-                    onError={(e) => {
-                      e.target.src = getImageUrl(getDefaultImageWithIndex(index));
-                    }}
+                    onError={(e) => handleImageError(e, index)}
                   />
                   {hasDiscount && (
                     <div className="discount-badge">

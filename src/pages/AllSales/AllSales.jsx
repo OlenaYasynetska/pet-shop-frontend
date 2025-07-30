@@ -1,33 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import Container from '../../shared/components/Container/Container';
+import Container from '../../shared/components/Container';
 import { productsApi } from '../../shared/api/productsApi';
 import PaginationButton from '../../shared/components/PaginationButton';
 import { useCart } from '../../shared/context/CartContext';
 import { getImageUrl, getDefaultImage } from '../../shared/utils/imageUtils';
-import { useSaleStyles } from '../../shared/hooks/useSaleStyles';
+import { useSaleStyles, useImageUtils } from '../../shared/hooks';
 import '../../shared/styles/saleStyles.css';
 import './AllSales.css';
-
-// Функция для получения изображения по умолчанию
-const getDefaultImageWithIndex = (index) => {
-  const images = [
-    '/product_img/1.jpeg',
-    '/product_img/2.jpeg', 
-    '/product_img/3.jpeg',
-    '/product_img/4.jpeg',
-    '/product_img/5.jpeg',
-    '/product_img/6.jpeg',
-    '/product_img/7.jpeg',
-    '/product_img/8.jpeg'
-  ];
-  return images[index % images.length];
-};
 
 const AllSales = () => {
   const navigate = useNavigate();
   const { addToCart } = useCart();
   const saleStyles = useSaleStyles();
+  const { getDefaultImageWithIndex, handleImageError } = useImageUtils();
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -215,9 +201,7 @@ const AllSales = () => {
                   className="product-img"
                   src={getImageUrl(product.image) || getDefaultImageWithIndex(index)}
                   alt={product?.title || product?.name || 'Product'}
-                  onError={(e) => {
-                    e.target.src = getImageUrl(getDefaultImageWithIndex(index));
-                  }}
+                  onError={(e) => handleImageError(e, index)}
                 />
                 {product?.discont_price && product.discont_price < (product?.price || 0) && (
                   <div className="discount-badge" style={saleStyles.discountBadge}>

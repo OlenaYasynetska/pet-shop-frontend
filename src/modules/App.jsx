@@ -1,5 +1,5 @@
 import Navigation from "../pages/Navigation";
-import Footer from "../modules/Footer/Footer";
+import Footer from "../modules/Footer/FooterContacts/Footer";
 import Header from '../modules/Header/Header';
 import { CartProvider } from '../shared/context/CartContext';
 

@@ -1,19 +1,22 @@
-import { API_BASE_URL } from '../api/config';
+const API_BASE_URL = 'http://localhost:3333';
 
 export const getImageUrl = (imagePath) => {
   if (!imagePath) return null;
   
-  // Если путь уже полный URL
+  // Если путь уже полный URL, возвращаем как есть
   if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
     return imagePath;
   }
   
-  // Если путь начинается с /, убираем его
-  const cleanPath = imagePath.startsWith('/') ? imagePath.slice(1) : imagePath;
+  // Если путь начинается с /, добавляем базовый URL
+  if (imagePath.startsWith('/')) {
+    return `${API_BASE_URL}${imagePath}`;
+  }
   
-  return `${API_BASE_URL}/${cleanPath}`;
+  // Иначе добавляем базовый URL и /
+  return `${API_BASE_URL}/${imagePath}`;
 };
 
 export const getDefaultImage = () => {
-  return `${API_BASE_URL}/product_img/1.jpeg`;
+  return 'https://via.placeholder.com/300x300?text=No+Image';
 }; 

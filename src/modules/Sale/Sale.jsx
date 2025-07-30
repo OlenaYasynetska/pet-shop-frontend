@@ -5,22 +5,12 @@ import '../../shared/styles/saleStyles.css';
 import { NavLink } from 'react-router-dom';
 import { productsApi } from '../../shared/api/productsApi';
 import { getImageUrl, getDefaultImage } from '../../shared/utils/imageUtils';
-import { useSaleStyles } from '../../shared/hooks/useSaleStyles';
+import { useSaleStyles, useImageUtils } from '../../shared/hooks';
 
-
-// Функция для получения изображения по умолчанию
-const getDefaultImageWithIndex = (index) => {
-  const images = [
-    '/product_img/1.jpeg',
-    '/product_img/2.jpeg',
-    '/product_img/3.jpeg',
-    '/product_img/4.jpeg'
-  ];
-  return images[index % images.length];
-};
 
 const Sale = () => {
   const saleStyles = useSaleStyles();
+  const { getDefaultImageWithIndex, handleImageError } = useImageUtils();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -126,9 +116,7 @@ const Sale = () => {
               className="product-img" 
               src={getImageUrl(product.image) || getDefaultImageWithIndex(index)} 
               alt={product?.title || product?.name || 'Product'} 
-              onError={(e) => {
-                e.target.src = getImageUrl(getDefaultImageWithIndex(index));
-              }}
+              onError={(e) => handleImageError(e, index)}
             />
             {product.discont_price && product.discont_price < product.price && (
               <div className="discount-badge" style={saleStyles.discountBadge}>

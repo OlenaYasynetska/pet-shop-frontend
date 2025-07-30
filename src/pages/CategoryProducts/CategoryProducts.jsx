@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, NavLink, useNavigate } from 'react-router-dom';
-import Container from '../../shared/components/Container/Container';
+import Container from '../../shared/components/Container';
 import { getProductsByCategory, getCategories } from '../../shared/api/productsApi';
 import { getImageUrl, getDefaultImage } from '../../shared/utils/imageUtils';
-import PaginationButton from '../../shared/components/PaginationButton/PaginationButton';
+import PaginationButton from '../../shared/components/PaginationButton';
 import { useCart } from '../../shared/context/CartContext';
-import { useSaleStyles } from '../../shared/hooks/useSaleStyles';
+import { useSaleStyles } from '../../shared/hooks';
 import '../../shared/styles/saleStyles.css';
 import './CategoryProducts.css';
 
@@ -51,24 +51,17 @@ const CategoryProducts = () => {
         console.log('Categories data:', categoriesData);
         console.log('Category ID:', categoryId);
         
-        let currentCategory = Array.isArray(categoriesData) ? 
-          categoriesData.find(cat => cat.id === parseInt(categoryId)) : null;
-        
+        const currentCategory = categoriesData.find(cat => cat.id === parseInt(categoryId));
         console.log('Found category:', currentCategory);
         
-        // Если категория не найдена, используем fallback
-        if (!currentCategory) {
+        if (currentCategory) {
+          setCategory(currentCategory);
+        } else {
           console.log('Using fallback category');
-          currentCategory = {
-            id: parseInt(categoryId),
-            title: categoryNames[parseInt(categoryId)] || 'Category'
-          };
+          setCategory({ id: parseInt(categoryId), title: 'Category', name: 'Category' });
         }
         
         console.log('Final category:', currentCategory);
-        
-        // Устанавливаем категорию сразу
-        setCategory(currentCategory);
         
         // Получаем товары категории
         const allProducts = await getProductsByCategory(categoryId);
@@ -106,14 +99,10 @@ const CategoryProducts = () => {
         
       } catch (err) {
         console.error('Error fetching category products:', err);
-        setError('Failed to load products. Please try again later.');
+        setError('Failed to load category products. Please try again later.');
         
         console.log('Setting fallback category in catch block');
-        const fallbackCategory = {
-          id: parseInt(categoryId),
-          title: categoryNames[parseInt(categoryId)] || 'Category'
-        };
-        setCategory(fallbackCategory);
+        setCategory({ id: parseInt(categoryId), title: 'Category', name: 'Category' });
         
         // В случае ошибки показываем fallback товары
         const fallbackProducts = {
