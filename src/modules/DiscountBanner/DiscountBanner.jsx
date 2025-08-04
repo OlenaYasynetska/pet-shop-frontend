@@ -30,10 +30,9 @@ const DiscountBanner = () => {
   return (
     <>
       <section className="discount-banner">
-        <span className="discount-title-center">5% off on the first order</span>
         <img src={saleImg} alt="Sale" className="discount-img" />
         <div className="discount-content">
-          <h2>5% off on the first order</h2>
+          <h2 className="discount-title-center">5% off on the first order</h2>
           <form className="discount-form" onSubmit={handleSubmit}>
             <input 
               type="text" 

@@ -4,6 +4,19 @@
   padding: 32px 16px 0 16px;
 }
 
+/* Адаптивность для основного контейнера */
+@media (max-width: 768px) {
+  .notfound-wrapper {
+    padding: 24px 12px 0 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .notfound-wrapper {
+    padding: 16px 8px 0 8px;
+  }
+}
+
 .notfound-main {
   display: flex;
   flex-direction: column;
@@ -88,6 +101,46 @@
   margin-bottom: 24px;
 }
 
+/* Адаптивность для контактной сетки */
+@media (max-width: 768px) {
+  .notfound-contact-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .notfound-contact h2 {
+    font-size: 48px;
+    margin-bottom: 20px;
+  }
+  
+  .notfound-contact-block {
+    padding: 16px 20px;
+  }
+  
+  .notfound-contact-value {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .notfound-contact h2 {
+    font-size: 36px;
+    margin-bottom: 16px;
+  }
+  
+  .notfound-contact-block {
+    padding: 12px 16px;
+  }
+  
+  .notfound-contact-label {
+    font-size: 14px;
+  }
+  
+  .notfound-contact-value {
+    font-size: 18px;
+  }
+}
+
 .notfound-contact-block {
   background: #F6F6F6;
   border-radius: 10px;
@@ -107,6 +160,35 @@
   font-family: 'Montserrat', sans-serif;
 }
 
+/* Адаптивность для иконок в социальных сетях */
+@media (max-width: 480px) {
+  .notfound-contact-value img {
+    width: 32px;
+    height: 32px;
+  }
+}
+
 .notfound-map {
   margin-top: 16px;
+}
+
+/* Адаптивность для карты */
+@media (max-width: 768px) {
+  .notfound-map {
+    margin-top: 12px;
+  }
+  
+  .notfound-map iframe {
+    height: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .notfound-map {
+    margin-top: 8px;
+  }
+  
+  .notfound-map iframe {
+    height: 250px;
+  }
 } 
