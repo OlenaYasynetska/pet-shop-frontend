@@ -275,6 +275,7 @@
   align-items: center;
   justify-content: center;
   z-index: 1000;
+  overflow: hidden;
 }
 
 .success-modal {
@@ -290,6 +291,9 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 16px;
+  max-width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
 .close-modal-btn {
@@ -407,7 +411,16 @@
   }
   
   .success-modal {
-    padding: 24px;
-    margin: 20px;
+    width: calc(100% - 32px);
+    padding: 20px;
+    margin: 16px;
+  }
+  
+  .success-title {
+    font-size: 32px;
+  }
+  
+  .success-message {
+    font-size: 16px;
   }
 } 

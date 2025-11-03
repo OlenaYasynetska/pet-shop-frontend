@@ -61,12 +61,14 @@
   margin-bottom: 32px;
   align-items: center;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 .filter-group {
   display: flex;
   align-items: center;
   gap: 8px;
+  flex-wrap: wrap;
 }
 
 .filter-group label {
@@ -77,11 +79,13 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  white-space: nowrap;
 }
 
 .price-inputs {
   display: flex;
   gap: 8px;
+  flex-wrap: wrap;
 }
 
 .price-input {
@@ -92,6 +96,7 @@
   font-size: 14px;
   font-family: 'Montserrat', sans-serif;
   outline: none;
+  min-width: 0;
 }
 
 .price-input:focus {
@@ -366,5 +371,44 @@
 @media (max-width: 600px) {
   .products-grid {
     grid-template-columns: 1fr;
+  }
+} 
+
+/* Адаптивность для фильтров */
+@media (max-width: 768px) {
+  .products-filters {
+    gap: 16px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .filter-group {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .price-inputs {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .price-input {
+    width: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .products-filters {
+    gap: 12px;
+  }
+  
+  .filter-group label {
+    font-size: 14px;
+  }
+  
+  .price-input {
+    width: 50px;
+    padding: 6px 8px;
+    font-size: 12px;
   }
 } 

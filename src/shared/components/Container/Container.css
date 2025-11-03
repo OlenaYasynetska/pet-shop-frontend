@@ -6,4 +6,19 @@
   padding-right: 40px;
   width: 100%;
   box-sizing: border-box;
+}
+
+/* Адаптивность для контейнера */
+@media (max-width: 768px) {
+  .container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
 } 

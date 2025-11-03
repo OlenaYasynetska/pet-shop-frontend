@@ -2,6 +2,8 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 32px 16px 0 16px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* Адаптивность для основного контейнера */
@@ -22,6 +24,8 @@
   flex-direction: column;
   align-items: center;
   margin-bottom: 48px;
+  width: 100%;
+  max-width: 100%;
 }
 
 .notfound-404 {
@@ -32,6 +36,9 @@
   font-weight: 700;
   color: var(--primary-bg-color);
   gap: 16px;
+  width: 100%;
+  max-width: 100%;
+  flex-wrap: wrap;
 }
 
 .notfound-4 {
@@ -49,6 +56,7 @@
   background: transparent;
   border: none;
   box-shadow: none;
+  max-width: 100%;
 }
 
 .notfound-title {
@@ -85,6 +93,8 @@
 
 .notfound-contact {
   margin-top: 32px;
+  width: 100%;
+  max-width: 100%;
 }
 
 .notfound-contact h2 {
@@ -98,7 +108,82 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
-  margin-bottom: 24px;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Адаптивность для PageNotFound */
+@media (max-width: 900px) {
+  .notfound-404 {
+    font-size: 120px;
+    gap: 12px;
+  }
+  
+  .notfound-4 {
+    font-size: 120px;
+  }
+  
+  .notfound-pet {
+    width: 200px;
+    height: 180px;
+  }
+  
+  .notfound-title {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 600px) {
+  .notfound-404 {
+    font-size: 80px;
+    gap: 8px;
+  }
+  
+  .notfound-4 {
+    font-size: 80px;
+  }
+  
+  .notfound-pet {
+    width: 150px;
+    height: 135px;
+  }
+  
+  .notfound-title {
+    font-size: 24px;
+  }
+  
+  .notfound-desc {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .notfound-404 {
+    font-size: 60px;
+    gap: 6px;
+  }
+  
+  .notfound-4 {
+    font-size: 60px;
+  }
+  
+  .notfound-pet {
+    width: 120px;
+    height: 108px;
+  }
+  
+  .notfound-title {
+    font-size: 20px;
+  }
+  
+  .notfound-desc {
+    font-size: 14px;
+  }
+  
+  .notfound-btn {
+    padding: 10px 24px;
+    font-size: 16px;
+  }
 }
 
 /* Адаптивность для контактной сетки */

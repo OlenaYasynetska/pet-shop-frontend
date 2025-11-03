@@ -1,5 +1,7 @@
 .category-products-page {
   padding: 40px 0;
+  width: 100%;
+  max-width: 100%;
 }
 
 /* Навигация */
@@ -7,6 +9,8 @@
   display: flex;
   align-items: center;
   margin-bottom: 32px;
+  width: 100%;
+  max-width: 100%;
 }
 
 .category-nav-btn {
@@ -60,12 +64,15 @@
   margin-bottom: 32px;
   align-items: center;
   flex-wrap: wrap;
+  width: 100%;
+  max-width: 100%;
 }
 
 .price-filters {
   display: flex;
   align-items: center;
   gap: 8px;
+  flex-wrap: wrap;
 }
 
 .price-filters label {
@@ -84,6 +91,7 @@
   font-size: 14px;
   font-family: 'Montserrat', sans-serif;
   outline: none;
+  min-width: 0;
 }
 
 .price-filters input:focus {
@@ -94,6 +102,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  flex-wrap: wrap;
 }
 
 .discount-filter label {
@@ -101,44 +110,40 @@
   color: #282828;
   font-weight: 500;
   font-family: 'Montserrat', sans-serif;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
+  white-space: nowrap;
 }
 
 .discount-filter input[type="checkbox"] {
   width: 16px;
   height: 16px;
   accent-color: var(--primary-bg-color);
-  cursor: pointer;
 }
 
 .sort-filter {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 .sort-filter label {
-  font-family: 'Montserrat', sans-serif;
-  white-space: nowrap;
   font-size: 16px;
   color: #282828;
   font-weight: 500;
+  font-family: 'Montserrat', sans-serif;
+  white-space: nowrap;
 }
 
 .sort-filter select {
   padding: 8px 12px;
   border: 1px solid #E0E0E0;
-  min-width: 120px;
-  color: #282828;
   border-radius: 8px;
   font-size: 14px;
   font-family: 'Montserrat', sans-serif;
   outline: none;
   background: white;
   cursor: pointer;
+  min-width: 0;
 }
 
 .sort-filter select:focus {
@@ -373,5 +378,51 @@
 @media (max-width: 600px) {
   .products-grid {
     grid-template-columns: 1fr;
+  }
+} 
+
+/* Адаптивность для CategoryProducts */
+@media (max-width: 768px) {
+  .category-filters {
+    gap: 16px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .price-filters,
+  .discount-filter,
+  .sort-filter {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .price-filters input {
+    width: 60px;
+  }
+  
+  .category-title {
+    font-size: 48px;
+  }
+}
+
+@media (max-width: 480px) {
+  .category-filters {
+    gap: 12px;
+  }
+  
+  .price-filters label,
+  .discount-filter label,
+  .sort-filter label {
+    font-size: 14px;
+  }
+  
+  .price-filters input {
+    width: 50px;
+    padding: 6px 8px;
+    font-size: 12px;
+  }
+  
+  .category-title {
+    font-size: 36px;
   }
 } 

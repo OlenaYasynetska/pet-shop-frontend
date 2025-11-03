@@ -8,8 +8,8 @@ import Sale from '../../modules/Sale/Sale';
 const HomePage = () => {
   return (
     <>
-      <HeroBanner />
       <Container>
+        <HeroBanner />
         <Categories />
         <div style={{ marginBottom: '80px' }}>
           <DiscountBanner />

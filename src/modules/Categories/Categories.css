@@ -1,5 +1,7 @@
 .categories-section {
   margin-bottom: 0;
+  width: 100%;
+  max-width: 100%;
 }
 
 /* Для главной страницы добавляем отступ */
@@ -11,6 +13,8 @@
   display: flex;
   align-items: center;
   margin-bottom: 40px;
+  width: 100%;
+  max-width: 100%;
 }
 
 .categories-header h2 {
@@ -72,6 +76,8 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 24px;
+  width: 100%;
+  max-width: 100%;
 }
 
 /* .product-card img,
@@ -89,17 +95,54 @@
   .categories-section .product-grid {
     grid-template-columns: repeat(3, 1fr);
   }
+  
+  .categories-header h2 {
+    font-size: 48px;
+  }
 }
 
 @media (max-width: 900px) {
   .categories-section .product-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+  
+  .categories-header h2 {
+    font-size: 36px;
+  }
 }
 
 @media (max-width: 600px) {
   .categories-section .product-grid {
     grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .categories-header h2 {
+    font-size: 28px;
+  }
+  
+  .categories-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  
+  .categories-header__line {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .categories-section:not(.categories-page .categories-section) {
+    margin-bottom: 60px;
+  }
+  
+  .categories-header h2 {
+    font-size: 24px;
+  }
+  
+  .product-grid {
+    gap: 12px;
   }
 }
 

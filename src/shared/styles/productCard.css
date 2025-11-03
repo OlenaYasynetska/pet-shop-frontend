@@ -2,6 +2,9 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 /* Адаптивность для сетки продуктов */
@@ -20,6 +23,13 @@
 @media (max-width: 600px) {
   .product-grid {
     grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-grid {
+    gap: 12px;
   }
 }
 

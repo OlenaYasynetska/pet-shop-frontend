@@ -1,11 +1,15 @@
 .sale-section {
   margin-bottom: 80px;
+  width: 100%;
+  max-width: 100%;
 }
 
 .sale-header {
   display: flex;
   align-items: center;
   margin-bottom: 32px;
+  width: 100%;
+  max-width: 100%;
 }
 
 .sale-header h2 {
@@ -81,6 +85,8 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
+  width: 100%;
+  max-width: 100%;
 }
 
 /* Адаптивность для сетки продуктов в Sale */
@@ -94,11 +100,44 @@
   .product-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+  
+  .sale-header h2 {
+    font-size: 48px;
+  }
 }
 
 @media (max-width: 600px) {
   .product-grid {
     grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .sale-header h2 {
+    font-size: 36px;
+  }
+  
+  .sale-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  
+  .sale-header__line {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .sale-section {
+    margin-bottom: 60px;
+  }
+  
+  .sale-header h2 {
+    font-size: 28px;
+  }
+  
+  .product-grid {
+    gap: 12px;
   }
 }
 
