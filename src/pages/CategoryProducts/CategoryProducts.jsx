@@ -48,20 +48,14 @@ const CategoryProducts = () => {
 
         // Получаем информацию о категории
         const categoriesData = await getCategories();
-        console.log('Categories data:', categoriesData);
-        console.log('Category ID:', categoryId);
         
         const currentCategory = categoriesData.find(cat => cat.id === parseInt(categoryId));
-        console.log('Found category:', currentCategory);
         
         if (currentCategory) {
           setCategory(currentCategory);
         } else {
-          console.log('Using fallback category');
           setCategory({ id: parseInt(categoryId), title: 'Category', name: 'Category' });
         }
-        
-        console.log('Final category:', currentCategory);
         
         // Получаем товары категории
         const allProducts = await getProductsByCategory(categoryId);
@@ -100,8 +94,7 @@ const CategoryProducts = () => {
       } catch (err) {
         console.error('Error fetching category products:', err);
         setError('Failed to load category products. Please try again later.');
-        
-        console.log('Setting fallback category in catch block');
+
         setCategory({ id: parseInt(categoryId), title: 'Category', name: 'Category' });
         
         // В случае ошибки показываем fallback товары
@@ -192,8 +185,6 @@ const CategoryProducts = () => {
 
   const handleAddToCart = (product) => {
     // НЕ добавляем товар в корзину, только переходим на страницу товара
-    console.log(`Navigating to product: ${product?.title || product?.name || 'Product'}`);
-    
     // Переходим на страницу товара
     navigate(`/product/${product?.id || 1}`);
   };

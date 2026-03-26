@@ -23,7 +23,6 @@ const ProductDetails = () => {
         
         // Пытаемся загрузить данные из backend
         const productData = await getProductById(productId);
-        console.log('API response for product:', productData);
         
         if (productData) {
           // API может возвращать массив или объект
@@ -115,8 +114,7 @@ const ProductDetails = () => {
   const handleAddToCart = () => {
     if (product) {
       addToCart(product, quantity);
-      console.log(`Added ${quantity} of ${product?.title || product?.name || 'Product'} to cart`);
-      
+
       // Переходим в корзину
       navigate('/cart');
     }

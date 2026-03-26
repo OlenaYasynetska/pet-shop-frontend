@@ -134,8 +134,6 @@ const AllProducts = () => {
 
   const handleAddToCart = (product) => {
     // НЕ добавляем товар в корзину, только переходим на страницу товара
-    console.log(`Navigating to product: ${product?.title || product?.name || 'Product'}`);
-    
     // Переходим на страницу товара
     navigate(`/product/${product?.id || 1}`);
   };

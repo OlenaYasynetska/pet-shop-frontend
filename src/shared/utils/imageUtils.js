@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://localhost:3333';
+import { API_BASE_URL } from '../api/config.js';
 
 export const getImageUrl = (imagePath) => {
   if (!imagePath) return null;

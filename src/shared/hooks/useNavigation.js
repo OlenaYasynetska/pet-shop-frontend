@@ -5,7 +5,6 @@ export const useNavigation = () => {
   const navigate = useNavigate();
 
   const navigateToProduct = useCallback((product) => {
-    console.log(`Navigating to product: ${product?.title || product?.name || 'Product'}`);
     navigate(`/product/${product?.id || 1}`);
   }, [navigate]);
 
